@@ -287,7 +287,7 @@ img {       /*Убираем зазор под изображением, огр�
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 8;
+    z-index: 19;
 
     width: 100%;
     height: 100%;
@@ -298,20 +298,21 @@ img {       /*Убираем зазор под изображением, огр�
     pointer-events: none; /*позволяет производить действия через слой модального окна*/
     visibility: hidden;
 }
+
 .modal {  /*модальное окно*/
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%); /*Позиционирование модального окна по центру, относительно backdrop*/
-    z-index: 9;
+    transform: translate(-50%, -50%) scale(1); /*Позиционирование модального окна по центру, относительно backdrop*/
+    z-index: 20;
 
-    min-width: 528px;
+    max-width: 528px;
     min-height: 581px;
     border-radius: 4px;
     box-shadow: var(--shadow-modal);
     background-color: var(--brand-white-color);
+    padding: 40px;
 }
-
 
 .modal-button {
     position: absolute;
@@ -330,10 +331,151 @@ img {       /*Убираем зазор под изображением, огр�
     justify-content: center;
     align-items: center;
 }
-.modal-icon {
+.modal-icon-btn {
     width: 18px;
     height: 18px;
     fill: var(--logo-black-color);
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-form {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.17;
+    letter-spacing: 0.01em;
+    text-align: left;
+}
+.modal-title {
+    display: block;
+    margin-bottom: 12px;
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: var(--secondary-color);
+
+}
+.modal-form-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 10px;
+}
+
+.modal-icon {
+    position: absolute;
+
+    pointer-events: none;
+    width: 18px;
+    height: 18px;
+    left: 12px;
+    bottom: 11px;
+    fill: var(--logo-black-color);
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-form-field.field-coments {
+    margin-bottom: 20px;
+}
+.field-coments .modal-form-input {
+    resize: none;
+}
+
+.modal-form-label {
+    margin-bottom: 4px;
+
+}
+.modal-form-input {
+    padding: 12px 16px 12px 35px;
+    max-width: 100%;
+    border: 1px solid rgba(33, 33, 33, 0.2);
+    border-radius: 4px;
+
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-form-input::placeholder {
+    color: rgba(117, 117, 117, 0.5);
+}
+.modal-form-input.form-coments {
+    padding: 12px;
+}
+
+.modal-checkbox-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.modal-checkbox-label {
+    display: flex;
+    align-items: center;
+}
+.modal-checkbox-input { /* ---------Скрываем чекбокс-----------*/
+    position: absolute;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.checkbox-icon {
+    width: 16px;
+    height: 15px;
+    border: 2px solid var(--logo-black-color);
+    border-radius: 2px;
+    fill: transparent;
+    background-color: transparent;
+    margin-right: 8px;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-checkbox-input:checked + .modal-checkbox-label > .checkbox-icon {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    fill: var(--brand-white-color);
+}
+.form-link {
+    color: var(--accent-color);
+    margin-left: 3px;
+}
+
+.modal-form-btn {
+    display: block;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 200px;
+    height: 50px;
+    border: transparent;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    background-color: var(--accent-color);
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.88;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: var(--brand-white-color);
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-button:hover .modal-icon-btn, .modal-button:focus .modal-icon-btn,
+.modal-form-input:hover + .modal-icon, .modal-form-input:focus + .modal-icon {
+    fill: var(--accent-color);
+}
+.modal-form-btn:hover, .modal-form-btn:focus {
+    background-color: #188CE8;
+}
+.modal-form-input:hover, .modal-form-input:focus {
+    border-color: var(--accent-color);
 }
 
 /* ------------------СЕКЦИЯ ОСОБЕННОСТИ-------------------- */
@@ -716,6 +858,9 @@ img {       /*Убираем зазор под изображением, огр�
     color: var(--accent-color);
 }
 
+.footer-net {
+    margin-right: 93px;
+}
 .footer-title {  
     color: var(--brand-white-color);
 
@@ -738,6 +883,66 @@ img {       /*Убираем зазор под изображением, огр�
 }
 .team-link-item.footer-link:hover, .team-link-item.footer-link:focus {
     background-color: var(--accent-color);
+}
+
+       /* -----------Форма Подписки------------ */
+.footer-form {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    text-align: left;
+}
+.footer-form-group {
+    display: flex;
+    align-items: center;
+}
+.footer-form-mail {
+    position: relative;
+    display: flex;
+    margin-right: 12px;
+}
+.footer-form-label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.footer-form-input {
+    padding: 15px 16px 15px 78px;
+    width: 358px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    background-color: transparent;
+
+    color: var(--brand-white-color);
+}
+.footer-form-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 200px;
+    height: 50px;
+    border: transparent;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    background-color: var(--accent-color);
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.88;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: var(--brand-white-color);
+}
+.footer-icon-btn {
+    width: 24px;
+    height: 24px;
+    fill: var(--brand-white-color);
+    margin-left: 10px;
+
 }
 
 
